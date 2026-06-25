@@ -18,17 +18,17 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
 *Objectif : Préparer les machines et transférer les briques de base sans saturer la connexion du PC Fixe.*
 
 * **Sur le PC Portable (En déplacement / Connexion stable) :**
-    * [ ] Créer l'architecture du dépôt Git.
-    * [ ] Télécharger les datasets de référence depuis Hugging Face (*Do-Not-Answer*, *JailbreakBench*, *Alpaca*).
-    * [ ] Télécharger les poids natifs (FP16/BF16) des modèles cibles légers :
+    * [x] Créer l'architecture du dépôt Git.
+    * [x] Télécharger les datasets de référence depuis Hugging Face (*Do-Not-Answer*, *JailbreakBench*, *Alpaca*).
+    * [x] Télécharger les poids natifs (FP16/BF16) des modèles cibles légers :
         * `Llama-3.2-1B-Instruct`
         * `Qwen2.5-1.5B-Instruct`
         * `Gemma-2-2B-IT`
-    * [ ] Stocker le tout sur un support USB externe.
+    * [x] Stocker le tout sur un support USB externe.
 * **Sur le PC Fixe (Hors-ligne / Puissance locale) :**
-    * [ ] Transférer les modèles et datasets depuis la clé USB.
-    * [ ] Configurer l'environnement Python avec PyTorch (compatible ROCm/DirectML pour la RX 580) ou préparer le fallback CPU optimisé pour l'extraction de tenseurs.
-    * [ ] Vérifier que les trois modèles se chargent correctement en mémoire sans erreur de VRAM.
+    * [x] Transférer les modèles et datasets depuis la clé USB.
+    * [] Configurer l'environnement Python avec PyTorch (compatible ROCm/DirectML pour la RX 580) ou préparer le fallback CPU optimisé pour l'extraction de tenseurs.
+    * [] Vérifier que les trois modèles se chargent correctement en mémoire sans erreur de VRAM.
 
 ### [ ] Phase 2 : Collecte des Activations & Isolation Vectorielle (Mois 2)
 *Objectif : Utiliser la puissance du PC Fixe pour cartographier la géométrie interne du refus.*
