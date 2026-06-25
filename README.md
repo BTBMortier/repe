@@ -27,8 +27,8 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
     * [x] Stocker le tout sur un support USB externe.
 * **Sur le PC Fixe (Hors-ligne / Puissance locale) :**
     * [x] Transférer les modèles et datasets depuis la clé USB.
-    * [] Configurer l'environnement Python avec PyTorch (compatible ROCm/DirectML pour la RX 580) ou préparer le fallback CPU optimisé pour l'extraction de tenseurs.
-    * [] Vérifier que les trois modèles se chargent correctement en mémoire sans erreur de VRAM.
+    * [x] Configurer l'environnement Python avec PyTorch (compatible ROCm/DirectML pour la RX 580) ou préparer le fallback CPU optimisé pour l'extraction de tenseurs.
+    * [x] Vérifier que les trois modèles se chargent correctement en mémoire sans erreur de VRAM.
 
 ### [ ] Phase 2 : Collecte des Activations & Isolation Vectorielle (Mois 2)
 *Objectif : Utiliser la puissance du PC Fixe pour cartographier la géométrie interne du refus.*
