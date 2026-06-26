@@ -14,7 +14,7 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
 
 ## 📅 Feuille de Route de Recherche (Roadmap)
 
-### [ ] Phase 1 : Logistique, Téléchargements & Environnements (Mois 1)
+### [ ] Phase 1 : Logistique, Téléchargements & Environnements (DONE)
 *Objectif : Préparer les machines et transférer les briques de base sans saturer la connexion du PC Fixe.*
 
 * **Sur le PC Portable (En déplacement / Connexion stable) :**
@@ -30,7 +30,7 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
     * [x] Configurer l'environnement Python avec PyTorch (compatible ROCm/DirectML pour la RX 580) ou préparer le fallback CPU optimisé pour l'extraction de tenseurs.
     * [x] Vérifier que les trois modèles se chargent correctement en mémoire sans erreur de VRAM.
 
-### [ ] Phase 2 : Collecte des Activations & Isolation Vectorielle (Mois 2)
+### [ ] Phase 2 : Collecte des Activations & Isolation Vectorielle (WIP)
 *Objectif : Utiliser la puissance du PC Fixe pour cartographier la géométrie interne du refus.*
 
 * **Sur le PC Fixe (Calcul local) :**
@@ -41,7 +41,7 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
     * [ ] Récupérer les petits fichiers de résultats de la PCA (quelques Mo) via clé USB ou Git.
     * [ ] Rédiger les scripts de visualisation (graphiques de trajectoires vectorielles) et commencer à coder la structure de l'attaque multi-tours.
 
-### [ ] Phase 3 : Érosion Narrative & Matrice de Vulnérabilités (Mois 3-4)
+### [ ] Phase 3 : Érosion Narrative & Matrice de Vulnérabilités (TODO)
 *Objectif : Définir les scénarios sémantiques optimaux par modèle.*
 
 * **Sur le PC Portable (Conception) :**
@@ -52,7 +52,7 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
     * [ ] Mesurer itérativement (via la similarité cosinus) la vitesse d'effondrement du vecteur de refus calculé en Phase 2.
     * [ ] Consolider la **Matrice de Correspondance** : associer l'ID du modèle à la stratégie narrative qui paralyse le plus efficacement ses défenses neuronales.
 
-### [ ] Phase 4 : Pipeline Automatisé & Expérimentation de Masse (Mois 5)
+### [ ] Phase 4 : Pipeline Automatisé & Expérimentation de Masse (TODO)
 *Objectif : Unifier le code et prouver statistiquement l'efficacité de la méthode.*
 
 * **Sur le PC Portable / Fixe (Travail partagé via Git) :**
@@ -61,7 +61,7 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
     * [ ] Lancer les benchmarks d'attaque à grande échelle sur les trois modèles locaux pour récolter les données quantitatives.
     * [ ] Sauvegarder les logs de dialogues et les scores de succès (Attack Success Rate - ASR).
 
-### [ ] Phase 5 : Rédaction du White Paper & Publication (Mois 6)
+### [ ] Phase 5 : Rédaction du White Paper & Publication (TODO)
 *Objectif : Valoriser le travail pour votre crédibilité professionnelle.*
 
 * **Sur le PC Portable (Rédaction nomade) :**
