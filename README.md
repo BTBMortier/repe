@@ -5,14 +5,14 @@ Ce dépôt héberge les travaux de recherche, le code et la feuille de route d'u
 ## 💻 Architecture du Laboratoire Hybride
 
 Pour pallier les contraintes matérielles et de connectivité, le travail est segmenté ainsi :
-* **PC Portable (Mobilité & Connectivité) :** Utilisé pour la veille théorique, le téléchargement des datasets/modèles (via connexions stables en déplacement), l'écriture du code brut, les requêtes API (Boîte Noire) et la rédaction finale.
-* **PC Fixe (Puissance de Calcul / Hors-ligne) :** Équipé d'une RX 580 (8 Go VRAM). Utilisé exclusivement pour l'inférence locale des modèles en FP16, l'extraction des espaces d'activation (Boîte Blanche) et les calculs matriciels lourds (PCA).
+* **PC Portable (Mobilité & Connectivité) :** Utilisé pour la veille théorique, le téléchargement des datasets/modèles, l'écriture du code brut, les requêtes API (Boîte Noire) et la rédaction finale.
+* **PC Fixe (Puissance de Calcul / Hors-ligne) :** Équipé d'une RX 580 (8 Go VRAM). Utilisé exclusivement pour l'inférence locale des modèles, l'extraction des espaces d'activation (Boîte Blanche), les calculs matriciels (PCA) et l'entraînement des sondes de classification.
 * **Stratégie de Synchronisation :** * *Code & Scripts :* Synchronisés via Git (via partage de connexion mobile léger).
-    * *Données lourdes (Poids des modèles `.safetensors` et activations `.pt`) :* Transférés physiquement via un disque dur externe ou une clé USB entre le portable et le fixe.
+    * *Données lourdes (Poids des modèles `.safetensors` et activations `.pt`) :* Transférés physiquement via un support USB externe entre le portable et le fixe.
 
 ---
 
-## 📅 Feuille de Route de Recherche (Roadmap)
+## 📅 Feuille de Route de Recherche (Roadmap V1)
 
 ### [ ] Phase 1 : Logistique, Téléchargements & Environnements (DONE)
 *Objectif : Préparer les machines et transférer les briques de base sans saturer la connexion du PC Fixe.*
@@ -30,43 +30,45 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
     * [x] Configurer l'environnement Python avec PyTorch (compatible ROCm/DirectML pour la RX 580) ou préparer le fallback CPU optimisé pour l'extraction de tenseurs.
     * [x] Vérifier que les trois modèles se chargent correctement en mémoire sans erreur de VRAM.
 
-### [ ] Phase 2 : Collecte des Activations & Isolation Vectorielle (WIP)
-*Objectif : Utiliser la puissance du PC Fixe pour cartographier la géométrie interne du refus.*
+### [ ] Phase 2 : Extraction Thématique & Isolation des Murs de Sécurité (WIP)
+*Objectif : Cartographier la géométrie interne du refus en isolant des vecteurs par thématique de sécurité.*
 
 * **Sur le PC Fixe (Calcul local) :**
-    * [ ] Exécuter les scripts d'extraction pour enregistrer les états cachés (*hidden states*) des couches du Transformer lors des requêtes saines vs malveillantes.
-    * [ ] Sauvegarder ces activations sous forme de fichiers tenseurs compressés (`.pt` ou `.npy`).
-    * [ ] Appliquer une Analyse en Composantes Principales (PCA) pour isoler mathématiquement le **Vecteur de Refus de Sécurité** pour chaque modèle.
+    * [ ] Concevoir des paires de prompts sémantiquement neutres (intention saine vs malveillante à vocabulaire égal) pour éviter le bruit de fond thématique.
+    * [ ] Extraire les *hidden states* au niveau des couches intermédiaires (couches critiques du milieu du Transformer) et sur les tokens charnières (fin du prompt / premier token de réponse).
+    * [ ] Appliquer une **PCA** pour projeter l'espace à haute dimension (4096d) et extraire les composantes principales de variance.
+    * [ ] Entraîner une **Régression Logistique (Linear Probing)** pour isoler le vecteur de poids $\vec{W}$ orthogonal à la frontière de refus pour chaque thématique (Cyber, Hacking, Toxicité). Valider l'hypothèse de linéarité du refus.
 * **Sur le PC Portable (En mobilité) :**
-    * [ ] Récupérer les petits fichiers de résultats de la PCA (quelques Mo) via clé USB ou Git.
-    * [ ] Rédiger les scripts de visualisation (graphiques de trajectoires vectorielles) et commencer à coder la structure de l'attaque multi-tours.
+    * [ ] Récupérer les matrices de poids de la régression logistique et les coordonnées de la PCA via clé USB ou Git.
+    * [ ] Évaluer la similarité cosinus entre les différents murs d'un même modèle pour vérifier si les barrières de sécurité sont universelles ou cloisonnées.
 
-### [ ] Phase 3 : Érosion Narrative & Matrice de Vulnérabilités (TODO)
-*Objectif : Définir les scénarios sémantiques optimaux par modèle.*
+### [ ] Phase 3 : Modélisation Géométrique de l'Érosion Narrative (TODO)
+*Objectif : Mesurer mathématiquement la déformation et le glissement vectoriel causés par la narration.*
 
 * **Sur le PC Portable (Conception) :**
-    * [ ] Écrire les variantes des scénarios d'érosion narrative (jeux de rôles, dilemmes moraux, abstractions logiques) basées sur l'état de l'art (*Crescendo*).
-    * [ ] Implémenter et tester la partie **LLMmap** (requêtes légères de fingerprinting en boîte noire).
-* **Sur le PC Fixe (Validation géométrique) :**
-    * [ ] Faire tourner les scénarios d'érosion narrative sur les modèles locaux.
-    * [ ] Mesurer itérativement (via la similarité cosinus) la vitesse d'effondrement du vecteur de refus calculé en Phase 2.
-    * [ ] Consolider la **Matrice de Correspondance** : associer l'ID du modèle à la stratégie narrative qui paralyse le plus efficacement ses défenses neuronales.
+    * [ ] Structurer les variantes des scénarios d'érosion narrative contextuelle (enrobage littéraire, scénario de jeu de rôle simple, contextualisation pédagogique).
+    * [ ] Développer la brique **LLMmap** pour exécuter les requêtes légères de fingerprinting en boîte noire.
+* **Sur le PC Fixe (Analyse Vectorielle) :**
+    * [ ] Injecter les prompts avec érosion narrative dans les modèles locaux et capturer leurs trajectoires d'activation.
+    * [ ] **Analyse Géométrique :** Calculer la distance Euclidienne et l'angle (similarité cosinus) des prompts narratifs par rapport à l'axe du mur de sécurité calculé en Phase 2.
+    * [ ] Utiliser la fonction Sigmoïde de la régression logistique pour obtenir un **score de risque continu** (probabilité de refus) au lieu d'une classification binaire stricte.
+    * [ ] Consolider la **Matrice de Correspondance** : associer l'ID du modèle et de sa thématique à la stratégie narrative qui provoque le plus fort glissement géométrique vers la zone saine.
 
-### [ ] Phase 4 : Pipeline Automatisé & Expérimentation de Masse (TODO)
-*Objectif : Unifier le code et prouver statistiquement l'efficacité de la méthode.*
+### [ ] Phase 4 : Pipeline Automatisé d'Audit & Benchmarking (TODO)
+*Objectif : Unifier le code et prouver statistiquement l'efficacité du jailbreak prédictif.*
 
 * **Sur le PC Portable / Fixe (Travail partagé via Git) :**
-    * [ ] Assembler le framework final : `Sondage LLMmap (Portable/API ou Fixe/Local)` -> `Identification` -> `Sélection de la ligne de la Matrice` -> `Génération de l'Érosion`.
+    * [ ] Assembler le framework final : `Fingerprint LLMmap` -> `Identification de l'architecture` -> `Sélection de la thématique cible` -> `Extraction de la ligne de vulnérabilité narrative associée` -> `Génération dynamique du prompt`.
 * **Sur le PC Fixe (Génération intensive) :**
-    * [ ] Lancer les benchmarks d'attaque à grande échelle sur les trois modèles locaux pour récolter les données quantitatives.
-    * [ ] Sauvegarder les logs de dialogues et les scores de succès (Attack Success Rate - ASR).
+    * [ ] Lancer les scénarios d'attaques automatisés guidés par la géométrie vectorielle sur les trois modèles locaux.
+    * [ ] Collecter les logs et valider les métriques quantitatives : Taux de Succès de l'Attaque (ASR) vs Proximité avec le cluster sain mesurée en PCA.
 
 ### [ ] Phase 5 : Rédaction du White Paper & Publication (TODO)
 *Objectif : Valoriser le travail pour votre crédibilité professionnelle.*
 
 * **Sur le PC Portable (Rédaction nomade) :**
-    * [ ] Mettre au propre le code sur ce dépôt GitHub (fichiers d'exemples clairs, instructions d'installation).
-    * [ ] Rédiger le document scientifique (White Paper de 6-8 pages) au format LaTeX (via Overleaf ou en local) décrivant la méthodologie et intégrant les graphiques générés par le PC Fixe.
+    * [ ] Nettoyer le dépôt GitHub (scripts documentés, exemples d'utilisation de la PCA/Régression pour le Red Teaming).
+    * [ ] Rédiger le document scientifique (White Paper) au format LaTeX décrivant la méthodologie de l'inversion de sonde et de l'analyse géométrique de l'érosion.
     * [ ] Soumettre le document sur la plateforme **HAL (CNRS)** pour indexation Google Scholar.
 
 ---
@@ -74,6 +76,6 @@ Pour pallier les contraintes matérielles et de connectivité, le travail est se
 ## 🛠️ Protocole de Synchronisation Quotidien (Mémo)
 
 Pour éviter les conflits de version entre les deux PC :
-1.  **Avant de coder sur le Portable en déplacement :** Faire un `git pull` (via 4G) pour récupérer d'éventuelles modifications de scripts faites sur le Fixe.
-2.  **Avant de lancer des calculs sur le Fixe :** Faire un `git pull` pour récupérer les derniers scénarios ou correctifs de code écrit sur le Portable.
-3.  **Pour les gros fichiers (Poids Hugging Face / Tenseurs stockés) :** Ne **jamais** les inclure dans Git (les ajouter dans le fichier `.gitignore`). Utiliser exclusivement le dossier `/data/` de la clé USB de transfert.
+1. **Avant de coder sur le Portable en déplacement :** Faire un `git pull` (via 4G) pour récupérer d'éventuelles modifications de scripts faites sur le Fixe.
+2. **Avant de lancer des calculs sur le Fixe :** Faire un `git pull` pour récupérer les derniers scénarios ou correctifs de code écrit sur le Portable.
+3. **Pour les gros fichiers (Poids Hugging Face / Tenseurs stockés) :** Ne **jamais** les inclure dans Git (les ajouter dans le fichier `.gitignore`). Utiliser exclusivement le dossier `/data/` de la clé USB de transfert.
