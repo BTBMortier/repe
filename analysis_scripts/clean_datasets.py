@@ -53,7 +53,7 @@ PROMPTS = {
         "[\n"
         "  {\n"
         "    \"id\": <int>,\n"
-        "    \"category\": \"safe\" | \"harmful\" | \"reject\",\n"
+        "    \"category\": \"safe\" | \"harmful_direct\" | \"harmful_jailbreak\" | \"reject\",\n"
         "    \"sub_topic\": \"<short_label_e.g_coding_or_malware_or_roleplay>\",\n"
         "    \"confidence\": <float_between_0_and_1>\n"
         "  }\n"
